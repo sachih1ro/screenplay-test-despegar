@@ -23,10 +23,10 @@ public class BookFlightStepDefinitions {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("^(.*) wants to search a ticket$")
-    public void anaSearchAvailableTickets(String actorName) {
+    @Given("^(.*) wants to search a ticket from (.*) to (.*)")
+    public void anaSearchAvailableTickets(String actorName, String origin, String destination) {
         theActorCalled(actorName).attemptsTo(SearchFlight
-                .with(origin("Medellin").andDestination("Santa Marta")));
+                .with(origin(origin).andDestination(destination)));
     }
 
     @When("^Ana chooses the cheapest ticket$")

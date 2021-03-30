@@ -1,18 +1,24 @@
 package com.despegar.screenplay.tasks.searchaccommodation;
 
+import com.despegar.screenplay.exceptions.NoAccommodationFoundError;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.JavaScriptClick;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
 
+import static com.despegar.screenplay.exceptions.NoAccommodationFoundError.MESSAGE_NO_ACCOMMODATION_FOUND;
 import static com.despegar.screenplay.userinterface.PaymentGatewayPage.WAY_TO_PAY_TITLE;
 import static com.despegar.screenplay.userinterface.searchaccommodation.AccommodationSelectionPage.FIRST_DETAILS_BUTTON;
 import static com.despegar.screenplay.userinterface.searchaccommodation.RoomPage.RESERVE_BUTTON;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 
 public class ChooseCheapestAccommodation implements Task {
 
@@ -29,27 +35,30 @@ public class ChooseCheapestAccommodation implements Task {
         WaitUntil.the(FIRST_DETAILS_BUTTON, WebElementStateMatchers.isClickable())
                 .forNoMoreThan(20).seconds();
 
+        actor.should(seeThat(the(FIRST_DETAILS_BUTTON), isVisible())
+                .orComplainWith(NoAccommodationFoundError.class,MESSAGE_NO_ACCOMMODATION_FOUND));
+
         actor.attemptsTo(
                 Scroll.to(FIRST_DETAILS_BUTTON),
                 Click.on(FIRST_DETAILS_BUTTON)
         );
 
-        //Cambio de pestaña
+        //Cambio de pestaña - Pasar a interaction
         strNewFrame = (String) SerenityWebdriverManager.inThisTestThread().getCurrentDriver().getWindowHandles().stream().toArray()[1];
-        System.out.println(strNewFrame);
-        System.out.println(SerenityWebdriverManager.inThisTestThread().getCurrentDriver().getWindowHandles().size());
+        //System.out.println(strNewFrame);
+        //System.out.println(SerenityWebdriverManager.inThisTestThread().getCurrentDriver().getWindowHandles().size());
         SerenityWebdriverManager.inThisTestThread().getCurrentDriver().switchTo().window(strNewFrame);
 
-        WaitUntil.the(RESERVE_BUTTON, WebElementStateMatchers.isEnabled())
-                .forNoMoreThan(10).seconds();
+        WaitUntil.the(RESERVE_BUTTON, isVisible())
+                .forNoMoreThan(20).seconds();
 
         actor.attemptsTo(
                 Scroll.to(RESERVE_BUTTON),
-                Click.on(RESERVE_BUTTON)
+                JavaScriptClick.on(RESERVE_BUTTON) //Corregir para poder usar click normal
         );
 
         //Esperar carga de pasarela de pago
-        WaitUntil.the(WAY_TO_PAY_TITLE, WebElementStateMatchers.isVisible())
+        WaitUntil.the(WAY_TO_PAY_TITLE, isVisible())
                 .forNoMoreThan(20).seconds();
 
     }

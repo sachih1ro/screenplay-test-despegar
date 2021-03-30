@@ -36,7 +36,7 @@ public class SearchFlightPage extends PageObject{
             .located(By.xpath("(//i[@class='input-icon sbox-ui-icon sbox-3-icon-calendar'])[1]"));
     public static final Target TOMORROW_DATE_BUTTON = Target.the("tomorrow date - button")
             .located(By.xpath("//div[@data-month='" + getNDaysAferTodayDateAsStr(1)[0]
-                    + "']//span[contains(text(),'" + getNDaysAferTodayDateAsStr(1)[1] + "')]"));
+                    + "']//span[text()='" + getNDaysAferTodayDateAsStr(1)[1] + "']"));
     public static final Target SEARCH_BUTTON = Target.the("search - button")
             .located(By.xpath("//em[contains(text(),'Buscar')]"));
 

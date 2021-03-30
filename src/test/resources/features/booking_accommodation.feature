@@ -4,6 +4,6 @@ Feature: Search the cheapest accommodation on the Despegar webpage
   To save money
 
   Scenario: Find the cheapest accommodation for tomorrow and the day after in Santa Marta
-    Given Ana wants to search accommodation
+    Given Ana wants to search accommodation in Santa Marta
     When Ana chooses the cheapest accommodation
     Then Ana should watch the accommodation payment gateway

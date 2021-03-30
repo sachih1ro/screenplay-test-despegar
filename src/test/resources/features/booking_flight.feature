@@ -4,6 +4,6 @@ Feature: Search the cheapest plane ticket on the Despegar webpage
   To save money
 
   Scenario: Search the cheapest ticket for tomorrow on the Medellín - Santa Marta route
-    Given Ana wants to search a ticket
+    Given Ana wants to search a ticket from Medellin to Santa Marta
     When Ana chooses the cheapest ticket
     Then Ana should watch the ticket payment gateway

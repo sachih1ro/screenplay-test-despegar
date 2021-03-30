@@ -25,10 +25,10 @@ public class SearchAccommodationPage extends PageObject {
             .located(By.xpath("//input[@placeholder='Entrada']"));
     public static final Target TOMORROW_DATE_BUTTON = Target.the("tomorrow date - button")
             .located(By.xpath("//div[@data-month='" + getNDaysAferTodayDateAsStr(1)[0]
-                    + "']//div[contains(text(),'" + getNDaysAferTodayDateAsStr(1)[1] + "')]"));
+                    + "']//div[text()='" + getNDaysAferTodayDateAsStr(1)[1] + "']"));
     public static final Target TWO_DAYS_AFTER_TODAY_BUTTON = Target.the("two days after tomorrow date - button")
             .located(By.xpath("//div[@data-month='" + getNDaysAferTodayDateAsStr(2)[0]
-                    + "']//div[contains(text(),'" + getNDaysAferTodayDateAsStr(2)[1] + "')]"));
+                    + "']//div[text()='" + getNDaysAferTodayDateAsStr(2)[1] + "']"));
     public static final Target SEARCH_BUTTON = Target.the("search - button")
             .located(By.xpath("//em[contains(text(),'Buscar')]"));
 

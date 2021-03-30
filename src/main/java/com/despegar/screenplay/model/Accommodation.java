@@ -1,19 +1,15 @@
 package com.despegar.screenplay.model;
 
 public class Accommodation {
-    private final String originStr;
-    private final String destinationStr;
+    private final String location;
 
-    public Accommodation(String originStr, String destinationStr) {
-        this.originStr = originStr;
-        this.destinationStr = destinationStr;
+    public Accommodation(String location) {
+        this.location = location;
     }
 
-    public String getOriginStr() {
-        return originStr;
+    public String getLocation() {
+        return location;
     }
 
-    public String getDestinationStr() {
-        return destinationStr;
-    }
+
 }

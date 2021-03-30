@@ -2,19 +2,18 @@ package com.despegar.screenplay.model;
 
 public class AccommodationBuilder {
 
-    private String origin;
-    private String destination;
+    private String location;
 
-    public AccommodationBuilder(String origin) {
-        this.origin = origin;
+    public AccommodationBuilder(String location) {
+        this.location = location;
     }
-    public Accommodation andDestination(String destination){
-        return new Accommodation(this.origin, destination);
+    public Accommodation in(String location){
+        return new Accommodation(this.location);
     }
 
-    public static AccommodationBuilder origin(String origin){
+    public static AccommodationBuilder origin(String location){
 
-        return new AccommodationBuilder(origin);
+        return new AccommodationBuilder(location);
     }
 
 }

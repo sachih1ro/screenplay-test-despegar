@@ -23,10 +23,9 @@ public class BookHotelStepDefinitions {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("^(.*) wants to search accommodation$")
-    public void anaWantsToSearchAccommodation(String actorName) {
-        theActorCalled(actorName).attemptsTo(SearchAccommodation
-                .with(origin("Medellin").andDestination("Santa Marta")));
+    @Given("^(.*) wants to search accommodation in (.*)$")
+    public void anaWantsToSearchAccommodation(String actorName, String location) {
+        theActorCalled(actorName).attemptsTo(SearchAccommodation.in(location));
     }
 
     @When("^Ana chooses the cheapest accommodation$")

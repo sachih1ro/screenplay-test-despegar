@@ -6,5 +6,5 @@ import org.openqa.selenium.By;
 
 public class RoomPage extends PageObject {
     public static final Target RESERVE_BUTTON = Target.the("reserve - button")
-            .located(By.xpath("//em[contains(text(),'Reservar ahora')]"));
+            .located(By.xpath("//button[@class='eva-3-btn -md -secondary -eva-3-fwidth']"));
 }

@@ -21,9 +21,10 @@ public class SearchAccommodation implements Task {
         this.accommodation = accommodation;
     }
 
-    public static SearchAccommodation with(Accommodation accommodation) {
-        return instrumented(SearchAccommodation.class, accommodation);
+    public static SearchAccommodation in(String location) {
+        return new SearchAccommodation(new Accommodation(location));
     }
+
 
     @Override
     @Step("{0} try to search accommodations")
@@ -41,7 +42,7 @@ public class SearchAccommodation implements Task {
         actor.attemptsTo(
 
                 Click.on(LOCATION_FIELD),
-                Enter.theValue(accommodation.getDestinationStr()).into(LOCATION_FIELD),
+                Enter.theValue(accommodation.getLocation()).into(LOCATION_FIELD),
                 WaitUntil.the(LOCATION_DETAILED_FIELD, WebElementStateMatchers.isClickable()),
                 Click.on(LOCATION_DETAILED_FIELD),
 
@@ -52,6 +53,7 @@ public class SearchAccommodation implements Task {
                 WaitUntil.the(TOMORROW_DATE_BUTTON, WebElementStateMatchers.isClickable()),
                 Scroll.to(TOMORROW_DATE_BUTTON),
                 Click.on(TOMORROW_DATE_BUTTON),
+                Scroll.to(TWO_DAYS_AFTER_TODAY_BUTTON),
                 Click.on(TWO_DAYS_AFTER_TODAY_BUTTON),
 
                 Scroll.to(SEARCH_BUTTON),
