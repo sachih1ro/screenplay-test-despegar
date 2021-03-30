@@ -23,14 +23,12 @@ public class SearchFlightPage extends PageObject{
             .located(By.xpath("//input[@class='input-tag sbox-main-focus " +
                     "sbox-bind-reference-flight-roundtrip-origin-input " +
                     "sbox-primary sbox-places-first places-inline']"));
-    public static final Target ORIGIN_DETAILED_FIELD = Target.the("origin detailed - text")
-            .located(By.xpath("//span[contains(text(),'Medell\u00EDn, Antioquia, Colombia')]"));
-    public static final Target DESTINATION_FIELD = Target.the("destination - textbox")
+   public static final Target DESTINATION_FIELD = Target.the("destination - textbox")
             .located(By.xpath("//input[@class='input-tag sbox-main-focus " +
                     "sbox-bind-reference-flight-roundtrip-destination-input " +
                     "sbox-secondary sbox-places-second places-inline']"));
-    public static final Target DESTINATION_DETAILED_FIELD = Target.the("destination detailed - text")
-            .located(By.xpath("//em[contains(text(),'Santa')]"));
+    public static final Target SELECTED_LOCATION_FIELD = Target.the("selected location - field")
+            .located(By.xpath("//li[@class='item -active']"));
 
     public static final Target DATE_FIELD = Target.the("date field")
             .located(By.xpath("(//i[@class='input-icon sbox-ui-icon sbox-3-icon-calendar'])[1]"));

@@ -26,6 +26,11 @@ public class ChooseCheapestTicket implements Task {
     @Step("{0} try to choose flight")
     public <T extends Actor> void performAs(T actor) {
 
+        //Probar luego
+        //actor.should(eventually());
+
+        //Corregir pues el WaitUntil es quien lanzará el error si no encuenta el elemento
+        //Consultar si es posible usar try-catch
         WaitUntil.the(FIRST_SELECT_BUTTON, isVisible())
                 .forNoMoreThan(20).seconds();
 

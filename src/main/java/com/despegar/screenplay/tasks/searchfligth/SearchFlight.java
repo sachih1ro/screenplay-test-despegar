@@ -7,8 +7,10 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.*;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.waits.Wait;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.Keys;
 
 import static com.despegar.screenplay.userinterface.searchflight.SearchFlightPage.*;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
@@ -44,12 +46,12 @@ public class SearchFlight implements Task {
                 Click.on(ONE_WAY_RADIOBUTTON),
 
                 Enter.theValue(flight.getOriginStr()).into(ORIGIN_FIELD),
-                WaitUntil.the(ORIGIN_DETAILED_FIELD, WebElementStateMatchers.isClickable()),
-                Click.on(ORIGIN_DETAILED_FIELD),
+                WaitUntil.the(SELECTED_LOCATION_FIELD, WebElementStateMatchers.isClickable()),
+                Click.on(SELECTED_LOCATION_FIELD),
 
                 Enter.theValue(flight.getDestinationStr()).into(DESTINATION_FIELD),
-                WaitUntil.the(DESTINATION_DETAILED_FIELD, WebElementStateMatchers.isClickable()),
-                Click.on(DESTINATION_DETAILED_FIELD),
+                WaitUntil.the(SELECTED_LOCATION_FIELD, WebElementStateMatchers.isClickable()),
+                Click.on(SELECTED_LOCATION_FIELD),
 
                 WaitUntil.the(DATE_FIELD, WebElementStateMatchers.isClickable()),
                 Click.on(DATE_FIELD),
