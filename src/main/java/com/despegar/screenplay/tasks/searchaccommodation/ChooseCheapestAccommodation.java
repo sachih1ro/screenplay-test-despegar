@@ -8,7 +8,6 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.JavaScriptClick;
 import net.serenitybdd.screenplay.actions.Scroll;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
 
@@ -37,23 +36,13 @@ public class ChooseCheapestAccommodation implements Task {
                 .waitingForNoLongerThan(15).seconds()
                 .orComplainWith(NoAccommodationFoundError.class,MESSAGE_NO_ACCOMMODATION_FOUND));
 
-        /*
-        WaitUntil.the(FIRST_DETAILS_BUTTON, WebElementStateMatchers.isClickable())
-                .forNoMoreThan(20).seconds();
-
-        actor.should(seeThat(the(FIRST_DETAILS_BUTTON), isVisible())
-                .orComplainWith(NoAccommodationFoundError.class,MESSAGE_NO_ACCOMMODATION_FOUND));
-
-         */
-
         actor.attemptsTo(
                 Scroll.to(FIRST_DETAILS_BUTTON),
                 Click.on(FIRST_DETAILS_BUTTON)
         );
 
-        // Tab change
         actor.attemptsTo(
-                SwitchTo.newFrame()
+                SwitchTo.newFramePage()
         );
 
         actor.should(eventually(seeThat(the(RESERVE_BUTTON), isVisible()))
@@ -65,9 +54,8 @@ public class ChooseCheapestAccommodation implements Task {
                 JavaScriptClick.on(RESERVE_BUTTON) //Corregir para poder usar click normal
         );
 
-        //Esperar carga de pasarela de pago
         WaitUntil.the(WAY_TO_PAY_TITLE, isVisible())
-                .forNoMoreThan(20).seconds();
-
+                .forNoMoreThan(30).seconds();
     }
+
 }

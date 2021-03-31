@@ -27,28 +27,17 @@ public class ChooseCheapestTicket implements Task {
     @Step("{0} try to choose flight")
     public <T extends Actor> void performAs(T actor) {
 
-        //Verification
         actor.should(eventually(seeThat(the(FIRST_SELECT_BUTTON),isVisible()))
                 .waitingForNoLongerThan(15).seconds().orComplainWith(
                 NoFlightFoundError.class, MESSAGE_NO_FLIGHT_FOUND));
-
-        /*
-        WaitUntil.the(FIRST_SELECT_BUTTON, isVisible())
-                .forNoMoreThan(15).seconds();
-        actor.should(seeThat(the(FIRST_SELECT_BUTTON),isVisible())
-                .orComplainWith(NoFlightFoundError.class, MESSAGE_NO_FLIGHT_FOUND));
-         */
 
         actor.attemptsTo(
                 Scroll.to(FIRST_SELECT_BUTTON),
                 Click.on(FIRST_SELECT_BUTTON)
         );
 
-        //Consultar si es mejor que esté aquí o en la Question o una task aparte
-        //Esperar carga de la siguiente página
         WaitUntil.the(WAY_TO_PAY_TITLE, isVisible())
-                .forNoMoreThan(20).seconds();
-
+                .forNoMoreThan(30).seconds();
 
     }
 }

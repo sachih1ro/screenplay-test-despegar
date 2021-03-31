@@ -21,24 +21,21 @@ public class SearchAccommodation implements Task {
         this.accommodation = accommodation;
     }
 
-    public static SearchAccommodation in(String location) {
-        return new SearchAccommodation(new Accommodation(location));
+    public static SearchAccommodation in(Accommodation accommodation) {
+        return instrumented(SearchAccommodation.class, accommodation);
     }
-
 
     @Override
     @Step("{0} try to search accommodations")
     public <T extends Actor> void performAs(T actor) {
-        //open search flight webpage
+        //mandar a clase aparte - interaction o task
         actor.attemptsTo(Open.browserOn(searchAccommodationPage));
 
-        //close unwanted elements
         actor.attemptsTo(
                 Check.whether(NO_SIGN_IN_BUTTON.resolveAllFor(actor).size() > 0)
                         .andIfSo(Click.on(NO_SIGN_IN_BUTTON))
         );
 
-        // fill data and search tickets
         actor.attemptsTo(
 
                 Click.on(LOCATION_FIELD),

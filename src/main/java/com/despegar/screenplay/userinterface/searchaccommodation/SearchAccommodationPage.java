@@ -5,7 +5,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.By;
 
-import static com.despegar.screenplay.utils.GeneralUtils.getNDaysAferTodayDateAsStr;
+import static com.despegar.screenplay.utils.DateUtils.getNDaysAferTodayDateAsStr;
 
 @DefaultUrl("https://www.despegar.com.co/hoteles/")
 public class SearchAccommodationPage extends PageObject {
@@ -21,6 +21,7 @@ public class SearchAccommodationPage extends PageObject {
     public static final Target LOCATION_DETAILED_FIELD = Target.the("destination detailed - text")
             .located(By.xpath("//em[contains(text(),'Santa')]"));
 
+    //Cambiar a locatedBy
     public static final Target DATE_FIELD = Target.the("date field")
             .located(By.xpath("//input[@placeholder='Entrada']"));
     public static final Target TOMORROW_DATE_BUTTON = Target.the("tomorrow date - button")

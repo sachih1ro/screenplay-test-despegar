@@ -1,5 +1,6 @@
 package com.despegar.screenplay.tasks.searchfligth;
 
+import com.despegar.screenplay.interactions.GeneralWait;
 import com.despegar.screenplay.model.Flight;
 import com.despegar.screenplay.userinterface.searchflight.SearchFlightPage;
 import net.serenitybdd.screenplay.Actor;
@@ -32,16 +33,13 @@ public class SearchFlight implements Task {
     @Step("{0} try to search flights")
     public <T extends Actor> void performAs(T actor) {
 
-        //open search flight webpage
         actor.attemptsTo(Open.browserOn(searchFlightPage));
 
-        //close unwanted elements
         actor.attemptsTo(
                 Check.whether(NO_SIGN_IN_BUTTON.resolveAllFor(actor).size() > 0)
                         .andIfSo(Click.on(NO_SIGN_IN_BUTTON))
         );
 
-        // fill data and search tickets
         actor.attemptsTo(
                 Click.on(ONE_WAY_RADIOBUTTON),
 

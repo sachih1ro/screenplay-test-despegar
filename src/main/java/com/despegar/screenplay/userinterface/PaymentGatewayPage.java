@@ -8,5 +8,4 @@ public class PaymentGatewayPage extends PageObject {
     public static final Target WAY_TO_PAY_TITLE = Target
             .the("Seat selection - map container")
             .located(By.xpath("//span[@class='eva-3-h4 form-title']"));
-    //
 }
